@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ascii-demo
+  labels:
+    app: ascii-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ascii-demo
+  template:
+    metadata:
+      labels:
+        app: ascii-demo
+    spec:
+      containers:
+      - name: ascii-demo
+        image: hashicorp/http-echo:0.2.3
+        args:
+        - "-text=AsciiArtify PoC"
+        ports:
+        - containerPort: 5678
